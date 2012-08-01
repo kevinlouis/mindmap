@@ -69,16 +69,17 @@ class MindMap
           void onMousePress( PVector mousePos )
           { 
                 if( caption == activeNodeCaption ) {
-                  if( touch(this,mousePos) )
+                  if( touch(this,mousePos) ){
                       if(level > 0)
                         link(parentLink,"_new");
+                  }else{
                             if (hasChildren() == true){
                                 for( int n = 0; n < childNodes.size(); ++n){
                                     MindMap node = childNodes.get( n );
                                         if ( touch(node, mousePos) )
                                             if ( !node.hasChildren() )
                                               link( node.nodeLink,"_new" );
-                }}}}
+                }}}}}
 
         
         /**
