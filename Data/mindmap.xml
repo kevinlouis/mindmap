@@ -1,7 +1,7 @@
 <node caption="Ideascover" colour="FF0000">
 	<node caption="Unidentified" linkUrl="http://localhost/IdeasCover/browse/byCategory/unidentified" colour="FF0000" >
 	</node>
-	<node caption="Technology">
+	<node caption="Technology" parentLink="http://technology.com">
 		<node caption="Mobile Phones" linkUrl="http://localhost/IdeasCover/browse/byCategory/MobilePhones" colour="3B70F5">
 		</node>
 		<node caption="Computers" linkUrl="http://localhost/IdeasCover/browse/byCategory/Computers" colour="FF0000">
@@ -9,13 +9,13 @@
 		<node caption="Tablets" linkUrl="http://localhost/IdeasCover/browse/byCategory/Tablets" colour="FF0000">
 		</node>
 	</node>
-	<node caption="Design" colour="FF0000" parentLink="http://facebook.com">
+	<node caption="Design" colour="FF0000" parentLink="https://www.design.com">
 		<node caption="Fashion" linkUrl="http://localhost/IdeasCover/browse/byCategory/fashion" colour="FF0000">
 		</node>
 		<node caption="Jewelleries" linkUrl="http://localhost/IdeasCover/browse/byCategory/jewelleries" colour="FF0000">
 		</node>
 	</node>
-	<node caption="Home" colour="FF0000" parentLink="http://google.com">
+	<node caption="Home" colour="FF0000" parentLink="http://facebook.com">
 		<node caption="Furniture" linkUrl="http://localhost/IdeasCover/browse/byCategory/furniture" colour="FF0000">
 		</node>
 		<node caption="Appliances" linkUrl="http://localhost/IdeasCover/browse/byCategory/appliances" colour="FF0000">
@@ -23,7 +23,7 @@
 		<node caption="Stationaries" linkUrl="http://localhost/IdeasCover/browse/byCategory/stationaries" colour="FF0000">
 		</node>
 	</node>
-	<node caption="Application" colour="FF0000" parentLink="http://google.com">
+	<node caption="Application" colour="FF0000" parentLink="http://application.com">
 		<node caption="Windows OS" linkUrl="http://localhost/IdeasCover/browse/byCategory/windowsos" colour="FF0000">
 		</node>
 		<node caption="Mac OS X" linkUrl="http://localhost/IdeasCover/browse/byCategory/macosx" colour="FF0000">

@@ -44,7 +44,8 @@ class MindMap
                                 childNodes.add( new MindMap(children[n], level+1) );
                                 childNodes.get( childNodes.size()-1 ).caption = children[n].getString( "caption" );
                                 childNodes.get( childNodes.size()-1 ).nodeLink = children[n].getString( "linkUrl" );
-                                //childNodes.get( childNodes.size()-1 ).colorStr = children[n].getString( "colour" );
+                                childNodes.get( childNodes.size()-1 ).colorStr = children[n].getString( "colour" );
+                                childNodes.get( childNodes.size()-1 ).parentLink = children[n].getString( "parentLink" );
                                 
                         }
                  
