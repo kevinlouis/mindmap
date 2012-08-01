@@ -49,15 +49,14 @@ class MindMap
                                 childNodes.get( childNodes.size()-1 ).parentLink = children[n].getString( "parentLink" );
                                 
                         }
-                 
-                } 
-                else if ( level > 0 ) {
-                        XML[] children = xml.getChildren( "node" );
+                } else if ( level > 0 ) {
+                  	XML[] children = xml.getChildren( "node" );
                         if ( children.length == 0 ) {
                                 bHasChildren = false;
                                 
                                 return;
                         }
+
                         for ( int n = 0; n < children.length; ++n ) {
                                 childNodes.add( new MindMap(children[n], level+1) );
                                 childNodes.get( childNodes.size()-1 ).caption = children[n].getString( "caption" );
@@ -92,6 +91,7 @@ class MindMap
          * @mousePos: mouse position when released
          *
          * called by the mouseDragged(). used to move the nodes around.
+	 *
          */
         
         void onMouseDragged( PVector mousePos )
@@ -135,9 +135,10 @@ class MindMap
         
         void update()
         {
-          position.x = constrain( position.x, MIN_X, MAX_X);
-          position.y = constrain( position.y, MIN_Y, MAX_Y);
-                if ( caption == activeNodeCaption ) {
+         	position.x = constrain( position.x, MIN_X, MAX_X);
+         	position.y = constrain( position.y, MIN_Y, MAX_Y);
+                
+		if ( caption == activeNodeCaption ) {
                         int numChildNodes = childNodes.size();
                         float angleStep = 2*PI/numChildNodes;
                         for ( int n = 0; n < numChildNodes; ++n ) {
@@ -156,6 +157,7 @@ class MindMap
          * draw - draw the current node and its children to the screen.
          * 
          * all the drawing work is done here. no calculations.
+	 *
          */
 
         void draw()
@@ -171,6 +173,7 @@ class MindMap
                                 }
                         }
                 }
+
                 smooth();
                 fill(red(colorInt),green(colorInt),blue(colorInt));
                 stroke(red(colorInt),green(colorInt),blue(colorInt));
@@ -216,6 +219,15 @@ class MindMap
                 position.x += ( loc.x - position.x ) / 10.0f;
                 position.y += ( loc.y - position.y ) / 10.0f;
         }
+
+	/**
+	 * onChildOf - called when 'this' is a child of an active node
+	 * @node: the active node
+	 * @angle: angle assigned by the active node
+	 *	   used for the actual positioning of
+	 *	   this child node
+	 *
+	 */
 
 	void onChildOf( MindMap node, float angle )
 	{
