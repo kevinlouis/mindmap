@@ -12,9 +12,9 @@ class MindMap
        
         int fontSize = 18;
         
-
         PVector position;
         float radius;
+	PVector childAngle;
 
         boolean bHasChildren = true;
         boolean bHasParent = false;
@@ -22,8 +22,9 @@ class MindMap
 
         MindMap( XML xml, int level )
         {
-                position = new PVector( center.x, center.y );
+                position = new PVector( WINDOWCENTER.x, WINDOWCENTER.y );
                 radius = 160.0f;
+		childAngle = new PVector( random(2*PI), random(2*PI) );
                 this.level = level;
                 
                 /**
@@ -66,20 +67,24 @@ class MindMap
                 }
         }
         
-          void onMousePress( PVector mousePos )
-          { 
-                if( caption == activeNodeCaption ) {
-                  if( touch(this,mousePos) ){
-                      if(level > 0)
-                        link(parentLink,"_new");
-                  }else{
-                            if (hasChildren() == true){
-                                for( int n = 0; n < childNodes.size(); ++n){
-                                    MindMap node = childNodes.get( n );
-                                        if ( touch(node, mousePos) )
-                                            if ( !node.hasChildren() )
-                                              link( node.nodeLink,"_new" );
-                }}}}}
+	void onMousePress( PVector mousePos )
+        { 
+        	if( caption == activeNodeCaption ) {
+                	if( touch(this,mousePos) ){
+                		if( level > 0 )
+                        	link( parentLink,"_new" );
+                	} else {
+                        	if ( hasChildren() == true ){
+                            		for( int n = 0; n < childNodes.size(); ++n ) {
+                                    		MindMap node = childNodes.get( n );
+                                        	if ( touch(node, mousePos) )
+                                            		if ( !node.hasChildren() )
+                                              			link( node.nodeLink,"_new" );
+                			}
+				}
+			}
+		}
+	}
 
         
         /**
@@ -138,14 +143,12 @@ class MindMap
                         for ( int n = 0; n < numChildNodes; ++n ) {
                                 MindMap node = childNodes.get( n );
                                 float angle = n * angleStep;
-                                float xPos = position.x + distance * cos(angle);
-                                float yPos = position.y + distance * sin(angle);
-                                node.moveTo( new PVector(xPos, yPos) );
+				node.onChildOf( this, angle );
                         }
                 
-                        if ( dist(position.x, position.y, center.x, center.y) > 1.0f )
+                        if ( dist(position.x, position.y, WINDOWCENTER.x, WINDOWCENTER.y) > 1.0f )
                                 if ( bUseDefaultPosition )
-                                        moveTo( center );
+                                        moveTo( WINDOWCENTER );
                 }
         }
         
@@ -213,6 +216,16 @@ class MindMap
                 position.x += ( loc.x - position.x ) / 10.0f;
                 position.y += ( loc.y - position.y ) / 10.0f;
         }
+
+	void onChildOf( MindMap node, float angle )
+	{
+		childAngle.x = ( childAngle.x + PI*CHILD_ANGLE_SCALE_X ) % ( 2*PI );
+		childAngle.y = ( childAngle.y + PI*CHILD_ANGLE_SCALE_Y ) % ( 2*PI );
+                float xPos = node.position.x + DISTANCE * cos(angle) + CHILD_DISTANCE * sin( childAngle.x ) * CHILD_MOVE_SCALE_X;
+                float yPos = node.position.y + DISTANCE * sin(angle) + CHILD_DISTANCE * cos( childAngle.y ) * CHILD_MOVE_SCALE_Y;
+                moveTo( new PVector(xPos, yPos) );
+		
+	}
         
         float getX()
         {

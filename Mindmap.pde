@@ -7,8 +7,16 @@ final int MAX_Y = 800;
 final PVector TOPLEFT = new PVector( 100, 100 );
 final PVector BOTTOMRIGHT = new PVector( 700, 500 );
 
-final float distance = 256.0f;
-final PVector center = new PVector( WIDTH/2.0f, HEIGHT/2.0f );
+final float DISTANCE = 256.0f;
+final PVector WINDOWCENTER = new PVector( WIDTH/2.0f, HEIGHT/2.0f );
+
+/** all the variables related to movement of child nodes */
+final float CHILD_DISTANCE = 64.0f;
+final float CHILD_ANGLE_SCALE_X = 1/256.0f;
+final float CHILD_ANGLE_SCALE_Y = 1/512.0f;
+final float CHILD_MOVE_SCALE_X = 0.5;
+final float CHILD_MOVE_SCALE_Y = 0.25;
+
 
 String activeNodeCaption;
 String nodeLink;
