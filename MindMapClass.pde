@@ -8,6 +8,7 @@ class MindMap
         String colorStr;
         int colorInt;
         String nodeLink;
+        String parentLink;
        
         int fontSize = 18;
         
@@ -34,6 +35,7 @@ class MindMap
                 childNodes = new ArrayList<MindMap>();
                 if ( level == 0 ) {
                         activeNodeCaption = caption = xml.getString( "caption" );
+                        parentLink = xml.getString("parentLink");
                         nodeLink = xml.getString("linkUrl");
                         colorStr = xml.getString("colour");
                         colorInt = Integer.parseInt(colorStr,16);
@@ -42,7 +44,7 @@ class MindMap
                                 childNodes.add( new MindMap(children[n], level+1) );
                                 childNodes.get( childNodes.size()-1 ).caption = children[n].getString( "caption" );
                                 childNodes.get( childNodes.size()-1 ).nodeLink = children[n].getString( "linkUrl" );
-                                childNodes.get( childNodes.size()-1 ).colorStr = children[n].getString( "colour" );
+                                //childNodes.get( childNodes.size()-1 ).colorStr = children[n].getString( "colour" );
                                 
                         }
                  
@@ -65,22 +67,17 @@ class MindMap
         
           void onMousePress( PVector mousePos )
           { 
-            if( caption == activeNodeCaption ) {
-                if( touch(this,mousePos) ){
-                    if( hasChildren() == false)
-                        link( nodeLink,"_new");
-                } else {
-                    if ( hasChildren() == true ) {
-                        for ( int n = 0; n < childNodes.size(); ++n ) {
-                            MindMap node = childNodes.get( n );
+                if( caption == activeNodeCaption ) {
+                  if( touch(this,mousePos) )
+                        link(parentLink,"_new");
+                        if (hasChildren() == true){
+                        for( int n = 0; n < childNodes.size(); ++n){
+                          MindMap node = childNodes.get( n );
                             if ( touch(node, mousePos) )
                                 if ( !node.hasChildren() )
-                                    link( node.nodeLink );
-                        }
-                    }
-                }
-            }
-        }
+                                    link( node.nodeLink,"_new" );
+                }}}}
+
         
         /**
          * onMouseDragged - triggered when a mouse button is dragged.
@@ -92,7 +89,7 @@ class MindMap
         void onMouseDragged( PVector mousePos )
         {
                 if ( caption == activeNodeCaption  ) {
-                        if ( touch(this, mousePos) ) {
+                        if ( touch(this, mousePos) && level == 0 ) {
                                 bUseDefaultPosition = false;
                                 setPosition( mousePos.x, mousePos.y );
                         }
