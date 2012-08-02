@@ -1,7 +1,7 @@
 <node caption="Ideascover" colour="FF0000">
 	<node caption="Unidentified" linkUrl="http://localhost/IdeasCover/browse/byCategory/unidentified" colour="FF0000" >
 	</node>
-	<node caption="Technology" parentLink="http://technology.com">
+	<node caption="Technology" colour="FFFF00" parentLink="http://technology.com">
 		<node caption="Mobile Phones" linkUrl="http://localhost/IdeasCover/browse/byCategory/MobilePhones" colour="3B70F5">
 		</node>
 		<node caption="Computers" linkUrl="http://localhost/IdeasCover/browse/byCategory/Computers" colour="3B70F5">

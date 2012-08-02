@@ -44,25 +44,28 @@ class MindMap
                         XML[] children = xml.getChildren( "node" );
                         for ( int n = 0; n < children.length; ++n ) {
                                 childNodes.add( new MindMap(children[n], level+1) );
-                                childNodes.get( childNodes.size()-1 ).caption = children[n].getString( "caption" );
-                                childNodes.get( childNodes.size()-1 ).nodeLink = children[n].getString( "linkUrl" );
-                                childNodes.get( childNodes.size()-1 ).colorStr = children[n].getString( "colour" );
-                                childNodes.get( childNodes.size()-1 ).parentLink = children[n].getString( "parentLink" );
+				MindMap node = childNodes.get( childNodes.size()-1 );
+                                node.caption = children[n].getString( "caption" );
+                                node.nodeLink = children[n].getString( "linkUrl" );
+                                node.colorStr = children[n].getString( "colour" );
+				node.colorInt = Integer.parseInt( node.colorStr, 16 );
+                                node.parentLink = children[n].getString( "parentLink" );
                                 
                         }
                 } else if ( level > 0 ) {
                   	XML[] children = xml.getChildren( "node" );
                         if ( children.length == 0 ) {
                                 bHasChildren = false;
-                                
                                 return;
                         }
 
                         for ( int n = 0; n < children.length; ++n ) {
                                 childNodes.add( new MindMap(children[n], level+1) );
-                                childNodes.get( childNodes.size()-1 ).caption = children[n].getString( "caption" );
-                                childNodes.get( childNodes.size()-1 ).nodeLink = children[n].getString( "linkUrl" );
-                                childNodes.get( childNodes.size()-1 ).colorStr = children[n].getString( "colour" );
+				MindMap node = childNodes.get( childNodes.size()-1 );
+                                node.caption = children[n].getString( "caption" );
+                                node.nodeLink = children[n].getString( "linkUrl" );
+                                node.colorStr = children[n].getString( "colour" );
+				node.colorInt = Integer.parseInt( node.colorStr, 16 );
                       }
                 }
         }
