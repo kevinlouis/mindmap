@@ -9,8 +9,9 @@ class MindMap
         int colorInt;
         String nodeLink;
         String parentLink;
+        //float cw;
        
-        int fontSize = 18;
+        int fontSize = 20;
         
         PVector position;
         float radius;
@@ -175,6 +176,7 @@ class MindMap
                 }
 
                 smooth();
+                
                 fill(red(colorInt),green(colorInt),blue(colorInt));
                 stroke(red(colorInt),green(colorInt),blue(colorInt));
                 ellipseMode(CENTER);
@@ -182,7 +184,9 @@ class MindMap
                 //noStroke();
                 fill( 255 );
                 textSize(fontSize);
-                text( caption, position.x-35.0f, position.y ); /* Some magic number for adjusting text position */
+                textAlign(CENTER);
+                float descent = textDescent();
+                text( caption, position.x+descent, position.y+descent ); /* Some magic number for adjusting text position */
         }
         
         /**
